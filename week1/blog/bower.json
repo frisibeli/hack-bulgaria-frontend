@@ -1,0 +1,20 @@
+{
+  "name": "blog",
+  "version": "0.0.0",
+  "authors": [
+    "frisibeli <frisibeli@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "fontawesome": "~4.3.0"
+  }
+}
