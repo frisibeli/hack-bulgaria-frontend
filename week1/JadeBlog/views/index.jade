@@ -1,0 +1,35 @@
+html
+	head
+		title!= title
+		link(href='/css/normalize.css', rel='stylesheet')
+		link(href='/css/style.css', rel='stylesheet')
+	body
+		.wrapper
+		.sidebar
+			img.avatar(src="img/avatar.jpg")
+			ul.menu
+				li
+					a(href='index') Home
+				li
+					a(href='post') Posts
+				li
+					a(href='post') About
+				li
+					a(href='post') Contacts
+		.content
+			.headings
+				h2.title Kristiyan Krumov's blog
+				h3.title I'd like to see you around
+			.posts
+				.post
+					img(src="img/js.jpg", width="100%")
+					h2.post-heading Java Script
+				.post
+					img(src="img/css.jpg", width="100%")
+					h2.post-heading CSS
+				.post
+					img(src="img/html.jpg", width="100%")
+					h2.post-heading HTML
+				.post
+					img(src="img/other.jpg", width="100%")
+					h2.post-heading Other

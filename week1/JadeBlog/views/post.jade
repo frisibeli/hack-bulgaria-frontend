@@ -1,0 +1,29 @@
+html
+	head
+		title!= title
+		link(href='/css/normalize.css', rel='stylesheet')
+		link(href='/css/style.css', rel='stylesheet')
+	body
+		.wrapper
+		.sidebar
+			img.avatar(src="img/avatar.jpg")
+			ul.menu
+				li
+					a(href='index') Home
+				li
+					a(href='post') Posts
+				li
+					a(href='post') About
+				li
+					a(href='post') Contacts
+		.content
+			.headings
+				h2.title This is a post
+				h3.title I'd like to see you around
+			.big-post
+				p
+					Give credit to this having one of the best titles for a programming blog in existence. The fact that owner, Jeff Atwood, doesn’t take himself or the blog overly seriously is to its benefit.
+				p
+					Jeff Atwood is also the co-founder of the question-and-answer website Stack Overflow which features questions and answers on a wide range of topics in computer programming and software development.
+				p
+					The Codding Horror, with a subtitle of “Programming and human factors”, is one of the few programming sites out there that’s close to satiric. It shows some of the real horror stories programmers have to deal with in the industry while still giving useful solutions to show light at the end of the tunnel. As the author says “You’re an amateur developer until you realize that everything you write sucks. YOU are the Coding Horror.“
