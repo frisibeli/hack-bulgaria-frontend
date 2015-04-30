@@ -1,0 +1,6 @@
+extends layout
+block content
+    each product, id in shop.products
+      article
+          a.title(href="product/"+id)= product.name
+          p.text= product.description

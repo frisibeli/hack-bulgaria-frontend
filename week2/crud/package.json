@@ -1,0 +1,16 @@
+{
+  "name": "crud",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompt": "^0.2.14",
+    "jsonfile": "^2.0.0",
+    "console.table": "^0.4.0"
+  }
+}

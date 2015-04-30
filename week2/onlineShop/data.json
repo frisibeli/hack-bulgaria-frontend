@@ -1,0 +1,17 @@
+{
+  "title":"Online shop",
+  "products":{
+    "1":{
+      "photo":"img/products/1.jpg",
+      "name":"Product 1",
+      "price":"25.99",
+      "description":"Praesent egestas molestie mi a lobortis. Etiam lacinia enim eu lacus scelerisque, at auctor nisi imperdiet. Sed risus nibh, rutrum et maximus vel, mollis ut leo. Mauris ac nisi pulvinar, porttitor ipsum a, suscipit ante. Mauris sed lobortis enim. Donec finibus mauris et pretium tempus."
+    },
+    "2":{
+      "photo":"img/products/1.jpg",
+      "name":"Product 2",
+      "price":"25.99",
+      "description":"Praesent egestas molestie mi a lobortis. Etiarfhrerhehe er er ter tre treertretsg ertre reertret ris ac nisi pulvinar, porttitor ipsum a, suscipit ante. Mauris sed lobortis enim. Donec finibus mauris et pretium tempus."
+    }
+  }
+}
