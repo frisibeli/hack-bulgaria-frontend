@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://scotch.io/tutorials/angular-routing-using-ui-router -->
+<html itemscope="" itemtype="https://schema.org/" lang="en-US"><script async="" type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/gpt.js"></script><script async="" type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/gpt.js"></script><script async="" src="./AngularJS Routing Using UI-Router _ Scotch_files/analytics.js"></script><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<!--
+	                                 /$$               /$$
+	                                | $$              | $$
+	  /$$$$$$$  /$$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$$| $$$$$$$  /$$   /$$
+	 /$$_____/ /$$_____/ /$$__  $$|_  $$_/   /$$_____/| $$__  $$| $$  | $$
+	|  $$$$$$ | $$      | $$  \ $$  | $$    | $$      | $$  \ $$| $$  | $$
+	 \____  $$| $$      | $$  | $$  | $$ /$$| $$      | $$  | $$| $$  | $$
+	 /$$$$$$$/|  $$$$$$$|  $$$$$$/  |  $$$$/|  $$$$$$$| $$  | $$|  $$$$$$$
+	|_______/  \_______/ \______/    \___/   \_______/|__/  |__/ \____  $$
+	                                                             /$$  | $$
+	                                                            |  $$$$$$/
+	                                                             \______/
+	                                 /$$               /$$
+	                                | $$              | $$
+	  /$$$$$$$  /$$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$$| $$$$$$$
+	 /$$_____/ /$$_____/ /$$__  $$|_  $$_/   /$$_____/| $$__  $$
+	|  $$$$$$ | $$      | $$  \ $$  | $$    | $$      | $$  \ $$
+	 \____  $$| $$      | $$  | $$  | $$ /$$| $$      | $$  | $$
+	 /$$$$$$$/|  $$$$$$$|  $$$$$$/  |  $$$$/|  $$$$$$$| $$  | $$
+	|_______/  \_______/ \______/    \___/   \_______/|__/  |__/
+
+
+
+	                                 /$$               /$$
+	                                | $$              | $$
+	  /$$$$$$$  /$$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$$| $$$$$$$
+	 /$$_____/ /$$_____/ /$$__  $$|_  $$_/   /$$_____/| $$__  $$
+	|  $$$$$$ | $$      | $$  \ $$  | $$    | $$      | $$  \ $$
+	 \____  $$| $$      | $$  | $$  | $$ /$$| $$      | $$  | $$
+	 /$$$$$$$/|  $$$$$$$|  $$$$$$/  |  $$$$/|  $$$$$$$| $$  | $$
+	|_______/  \_______/ \______/    \___/   \_______/|__/  |__/
+	-->
+	<title>AngularJS Routing Using UI-Router | Scotch</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="google-site-verification" content="NoKkRtzSguNO3Xd1cuhpVkUoh7n8mz-aofV9Ch4aS8w">
+
+	<!-- RSS -->
+	 <script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:1432131984,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"f0f2352769009f202302dd32d3d00cb5",petok:"cb1ed34b3d9349c52683a3d71ea73ad03e98e51f-1432281858-2118",zone:"scotch.io",rocket:"m",apps:{}}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=7e13c32551/cloudflare.min.js"><'+'\/script>');}}catch(e){};
+//]]>
+</script><script type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/cloudflare.min.js"></script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style><script data-module="cloudflare/rocket" id="cfjs_block_7fdbe2b5a3" onload="CloudFlare.__cfjs_block_7fdbe2b5a3_load()" onerror="CloudFlare.__cfjs_block_7fdbe2b5a3_error()" onreadystatechange="CloudFlare.__cfjs_block_7fdbe2b5a3_readystatechange()" type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/rocket.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Scotch - Developers bringing fire to the people." href="https://scotch.io/feed">
+
+	<!-- ICONS/TILES/WHATEVER REALLY NEED A MORE UNIVERSAL STANDARD -->
+	<link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="https://scotch.io/favicon.ico">
+	<link rel="apple-touch-icon" sizes="57x57" href="https://scotch.io/wp-content/themes/forty/img/icons/favicon-57.png">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://scotch.io/wp-content/themes/forty/img/icons/favicon-57.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://scotch.io/wp-content/themes/forty/img/icons/favicon-72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://scotch.io/wp-content/themes/forty/img/icons/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://scotch.io/wp-content/themes/forty/img/icons/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://scotch.io/wp-content/themes/forty/img/icons/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://scotch.io/wp-content/themes/forty/img/icons/favicon-152.png">
+	<meta name="application-name" content="Scotch Scotch scotch">
+	<meta name="msapplication-TileImage" content="https://scotch.io/wp-content/themes/forty/img/icons/favicon-144.png">
+	<meta name="msapplication-TileColor" content="#2A2A2A">
+
+	<!-- MUST PLEASE EVERYONE -->
+				
+		<!-- SEARCH ENGINES -->
+		<meta name="author" content="Chris Sevilleja">
+		<meta name="description" content="">
+		<link rel="canonical" href="./AngularJS Routing Using UI-Router _ Scotch_files/AngularJS Routing Using UI-Router _ Scotch.html">
+
+		<!-- THE TWITTER MACHINE -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@scotch_io">
+		<meta name="twitter:creator" content="sevilayha">
+		<meta name="twitter:title" content="AngularJS Routing Using UI-Router">
+		<meta name="twitter:description" content="">
+		<meta name="twitter:image:src" content="https://cask.scotch.io/2014/03/angular-routing-ui-router.jpg">
+
+		<!-- FACESPACE -->
+		<meta property="fb:admins" content="579622216,709634581">
+		<meta property="fb:app_id" content="1389892087910588">
+		<meta property="og:url" content="https://scotch.io/tutorials/angular-routing-using-ui-router">
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="AngularJS Routing Using UI-Router">
+		<meta property="og:image" content="https://cask.scotch.io/2014/03/angular-routing-ui-router.jpg">
+		<meta property="og:description" content="">
+		<meta property="og:site_name" content="Scotch">
+		<meta property="article:author" content="http://facebook.com/sevilayha">
+		<meta property="article:publisher" content="https://www.facebook.com/scotchdevelopment">
+
+		<!-- G++ -->
+		<meta itemprop="name" content="AngularJS Routing Using UI-Router">
+		<meta itemprop="description" content="">
+		<meta itemprop="image" content="https://cask.scotch.io/2014/03/angular-routing-ui-router.jpg">
+
+		
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://scotch.io/wp-content/themes/forty/build/styles.min.css">
+
+	<!-- BEGIN UGLY WP HEAD FORMATTING -->
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/scotch.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.2"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./AngularJS Routing Using UI-Router _ Scotch_files/wp-emoji-release.min.js" type="text/javascript"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="mp-theme-css" href="./AngularJS Routing Using UI-Router _ Scotch_files/theme.css" type="text/css" media="all">
+
+			
+			
+<script>
+	// GOOGLE ANALYTICS
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-36045075-1', 'auto');
+	ga('send', 'pageview');
+</script>
+<script async="" type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/count.js"></script><script type="text/javascript" async="" src="./AngularJS Routing Using UI-Router _ Scotch_files/bsa.js"></script><script type="text/javascript" async="" src="./AngularJS Routing Using UI-Router _ Scotch_files/embed.js"></script><script type="text/javascript" id="_bsap_js_8321ee0e3825ae084dc5408db80d21db" src="./AngularJS Routing Using UI-Router _ Scotch_files/s_8321ee0e3825ae084dc5408db80d21db.js" async="async"></script><script type="text/javascript" id="_bsap_js_8321ee0e3825ae084dc5408db80d2d1b" src="./AngularJS Routing Using UI-Router _ Scotch_files/s_8321ee0e3825ae084dc5408db80d2d1b.js" async="async"></script><script async="" src="./AngularJS Routing Using UI-Router _ Scotch_files/count-data.js"></script><script type="text/javascript" src="https://stats.buysellads.com/country.php"></script><script type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/pro.js" id="_bsap_premium_pro"></script><script type="text/javascript" src="https://stats.buysellads.com/country.php"></script><script type="text/javascript" src="https://stats.buysellads.com/country.php"></script><script type="text/javascript" id="_bsaPRO_js" src="./AngularJS Routing Using UI-Router _ Scotch_files/saved_resource" async="async"></script><script async="" type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/pubads_impl_62.js"></script><script type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/osd.js"></script></head>
+<body class="single single-post postid-2049 single-format-standard">
+	<header id="site-header">
+		<nav class="main-nav container-fluid">
+			<a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" class="toggle-nav visible-xs visible-sm">
+				<span class="icon ion-ios-pint-outline"></span>
+			</a>
+
+			<ul class="text-right hidden-xs hidden-sm">
+				<li class="tutorial-nav">
+					<a href="https://scotch.io/tutorials">
+						Tutorials
+						<span class="icon ion-ios-arrow-down"></span>
+					</a>
+				</li>
+				<li><a href="https://scotch.io/courses">Courses</a></li>
+				<li><a href="https://scotch.io/bar-talk">Bar Talk</a></li>
+				<li><a href="http://shop.scotch.io/">Shop</a></li>
+				<li class="header-slack">
+					<iframe src="./AngularJS Routing Using UI-Router _ Scotch_files/iframe.html" class="__slackin" style="border-width: 0px; width: 107px; height: 20px; visibility: visible;"></iframe>
+				</li>
+			</ul>
+
+			<div class="main-nav-logo">
+				<a href="https://scotch.io/"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/scotch-logo.png"></a>
+			</div>
+
+			<ul class="hidden-xs hidden-sm">
+
+									<li>
+						<a class="signup-nav">Sign Up</a>/
+						<a class="login-nav">Login</a>
+					</li>
+								<li>
+					<form action="https://scotch.io/" method="GET" class="search-form" role="search">
+						<span class="icon ion-ios-search-strong"></span>
+						<input type="search" name="s" autocomplete="off">
+					</form>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main id="site-main">
+	<div class="site-wrapper">
+	<div class="site-canvas">
+
+	<div id="site-content">
+		<div class="overlay"></div>
+
+		<div id="mobile-menu">
+			<ul>
+				<li><a href="https://scotch.io/tutorials">Tutorials</a></li>
+				<li><a href="https://scotch.io/courses">Courses</a></li>
+				<li><a href="https://scotch.io/bar-talk">Bar Talk</a></li>
+			</ul>
+		</div>
+
+		<div id="tags-list">
+			<a href="https://scotch.io/tag/angular-js" class="topic-angular">
+				<span class="topic-img"></span>
+				<span class="topic-name">Angular</span>
+			</a>
+			<a href="https://scotch.io/tag/node-js" class="topic-node">
+				<span class="topic-img"></span>
+				<span class="topic-name">Node</span>
+			</a>
+			<a href="https://scotch.io/tag/laravel" class="topic-laravel">
+				<span class="topic-img"></span>
+				<span class="topic-name">Laravel</span>
+			</a>
+			<a href="https://scotch.io/tag/mean" class="topic-mean">
+				<span class="topic-img"></span>
+				<span class="topic-name">MEAN</span>
+			</a>
+			<a href="https://scotch.io/tag/css" class="topic-css">
+				<span class="topic-img"></span>
+				<span class="topic-name">CSS</span>
+			</a>
+			<a href="https://scotch.io/tag/bootstrap" class="topic-bootstrap">
+				<span class="topic-img"></span>
+				<span class="topic-name">Bootstrap</span>
+			</a>
+			<a href="https://scotch.io/tag/sublime-text" class="topic-sublime">
+				<span class="topic-img"></span>
+				<span class="topic-name">Sublime Text</span>
+			</a>
+			<a href="https://scotch.io/tag/vagrant" class="topic-vagrant">
+				<span class="topic-img"></span>
+				<span class="topic-name">Vagrant</span>
+			</a>
+		</div>
+
+		<div id="signup-dropdown">
+		<a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" class="dropdown-close"><span class="icon ion-ios-close-outline"></span></a>
+		<div class="container">
+			<h3>Sign Up For Free</h3>
+			<div class="signup-why">
+				<div class="signup-reason">
+					<span class="icon ion-ios-bookmarks-outline"></span>
+					<h4>Save Your Favorite Articles</h4>
+				</div>
+				<div class="signup-reason">
+					<span class="icon ion-ios-help-outline"></span>
+					<h4>Get Help on the Forums</h4>
+				</div>
+				<div class="signup-reason">
+					<span class="icon ion-ios-flower-outline"></span>
+					<h4>Join the Community</h4>
+				</div>
+			</div>
+			<form id="register" class="signup-form" action="https://scotch.io/wp-admin/admin-ajax.php" method="POST">
+				<input type="hidden" id="signonsecurity" name="signonsecurity" value="218708ac1b"><input type="hidden" name="_wp_http_referer" value="/tutorials/angular-routing-using-ui-router">				<input type="hidden" name="redirect_to" value="/tutorials/angular-routing-using-ui-router?register=true">
+				<div class="signup-row">
+					<div class="form-group">
+						<input type="text" name="username" class="form-control" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<input type="text" name="email" class="form-control" placeholder="Email">
+					</div>
+				</div>
+				<div class="signup-row">
+					<div class="form-group">
+						<input type="password" name="password" class="form-control" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<input type="password" name="password_confirm" class="form-control" placeholder="Confirm Password">
+					</div>
+				</div>
+				<div class="signup-row">
+					<div class="form-group checkbox">
+						<label>
+							<input type="checkbox" name="newsletter_signup" checked=""> Sign Up for the Newsletter
+						</label>
+					</div>
+					<button type="submit" class="btn btn-danger">Sign Up</button>
+				</div>
+			</form>
+		</div>
+		<div class="alert alert-danger register-message"></div>
+		</div>
+
+		<div id="login-dropdown">
+		<a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" class="dropdown-close"><span class="icon ion-ios-close-outline"></span></a>
+		<div class="container container-login">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+				<div class="login-form-header">
+					<span class="icon ion-ios-sunny-outline"></span>
+					<h3>Login</h3>
+				</div>
+				<form id="login" class="login-form" action="https://scotch.io/wp-admin/admin-ajax.php" method="POST">
+					<input type="hidden" id="security" name="security" value="56ed815b8c"><input type="hidden" name="_wp_http_referer" value="/tutorials/angular-routing-using-ui-router">					<input type="hidden" name="redirect_to" value="/tutorials/angular-routing-using-ui-router">
+					<div class="form-group">
+						<input type="text" name="username" class="form-control" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" class="form-control" placeholder="Password">
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="rememberme" value="forever" checked="checked"> Remember Me
+						</label>
+					</div>
+					<button type="submit" class="btn btn-danger btn-lg btn-block">Login</button>
+					<p class="text-right"><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" class="forgot-password btn btn-link btn-sm">Forgot Your Password</a></p>
+				</form>
+
+			</div>
+		</div>
+		</div>
+		<div class="container container-forgot">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+				<div class="login-form-header">
+					<span class="icon ion-ios-locked-outline"></span>
+					<h3>Forgot Password</h3>
+				</div>
+				<form id="forgot" class="forgot-form" action="https://scotch.io/wp-admin/admin-ajax.php" method="POST">
+					<input type="hidden" id="forgotsecurity" name="forgotsecurity" value="b97d830587"><input type="hidden" name="_wp_http_referer" value="/tutorials/angular-routing-using-ui-router">					<input type="hidden" name="redirect_to" value="/tutorials/angular-routing-using-ui-router">
+					<div class="form-group">
+						<input type="text" name="user_login" class="form-control" placeholder="Username or Email">
+					</div>
+					<button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+				</form>
+			</div>
+		</div>
+		</div>
+		<div class="alert alert-danger login-message"></div>
+		</div>
+
+<article class="single-article">
+
+	<div class="page-topper text-center">
+		<h1>
+			AngularJS Routing Using UI-Router		</h1>
+		<div class="byline">
+	<span class="byline-item byline-author">
+		<a href="https://scotch.io/author/chris">
+			<img src="./AngularJS Routing Using UI-Router _ Scotch_files/8a8bf3a2c952984defbd6bb48304b38e">
+			Chris 
+			Sevilleja 
+							(</a><a href="https://twitter.com/sevilayha">@sevilayha</a>)
+					
+	</span>
+	<span class="byline-item">
+		<span class="icon ion-ios-calendar-outline"></span> March 10, 2014	</span>
+	
+		<span class="byline-item">
+		<span class="icon ion-ios-chatboxes-outline"></span> 
+		<a href="https://scotch.io/tutorials/angular-routing-using-ui-router#disqus_thread" class="disqus-comment-count" data-disqus-url="https://scotch.io/tutorials/angular-routing-using-ui-router">69</a>
+	</span>
+		<span class="byline-item">
+		<span class="icon ion-coffee"></span> <a href="https://scotch.io/category/tutorials" rel="category tag">Tutorials</a>	</span>
+		<span class="byline-item">
+		<span class="icon ion-ios-pricetags"></span> <a href="https://scotch.io/tag/angular-js" rel="tag">angularJS</a>, <a href="https://scotch.io/tag/routing" rel="tag">routing</a>, <a href="https://scotch.io/tag/spa" rel="tag">SPA</a>, <a href="https://scotch.io/tag/ui-router" rel="tag">ui-router</a> 
+	</span>
+	</div>	</div>
+
+	<div class="page-hero clearfix">
+		
+<div id="hero" class="page-hero-cover">
+	<div class="page-hero-cover-lg">
+		<div class="page-hero-cover-img " style="background-image:url(&#39;https://cask.scotch.io/2014/03/angular-routing-ui-router.jpg&#39;);"></div>
+
+		
+	</div>
+	<div class="page-hero-cover-info share-stats-box">
+		<div class="article-favorite">
+			<span class="wpfp-span"><a class="wpfp-link" href="https://scotch.io/tutorials/angular-routing-using-ui-router?wpfpaction=add&postid=2049" title="&lt;span class=&quot;icon ion-android-star-outline&quot;&gt;&lt;/span&gt; Favorite" rel="nofollow"><span class="icon ion-android-star-outline"></span> Favorite</a></span>		</div>
+		<div class="share-stat share-stat-lg share-total sharrre" data-url="https://scotch.io/tutorials/angular-routing-using-ui-router"><span class="share-number-total">242</span> shares</div>
+		<div class="share-stat share-stat-btns">
+			<a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" data-url="https://scotch.io/tutorials/angular-routing-using-ui-router" class="sbg-twitter twitter-button sharrre"><span class="icon ion-social-twitter"></span> 66</a>
+			<a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" data-url="https://scotch.io/tutorials/angular-routing-using-ui-router" class="sbg-facebook facebook-button sharrre"><span class="icon ion-social-facebook"></span> 36</a>
+			<a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" data-url="https://scotch.io/tutorials/angular-routing-using-ui-router" class="sbg-googleplus googleplus-button sharrre"><span class="icon ion-social-google"></span> 140</a>
+		</div>
+		
+		
+		
+		
+<div class="share-stat share-stat-action">
+	
+			<a href="http://plnkr.co/edit/IzimSVsstarlFviAm7S7?p=preview" class="btn-primary"> 
+			<span class="icon ion-ios-speedometer-outline"></span> View Code
+		</a>
+	
+	
+			<a href="http://embed.plnkr.co/IzimSVsstarlFviAm7S7/preview" class="btn-danger">
+			<span class="icon ion-ios-game-controller-b-outline"></span> View Demo
+		</a>
+	
+	</div>
+
+	</div>
+</div>	</div>	
+
+	<div class="page-main">
+		<div class="page-content">
+	
+			<!-- LEGEND -->
+			<div class="page-content-legend">
+							<div class="sticky-wrapper" style="height: 0px;"><div class="legend stuck" style="left: -125px;">
+	<div class="legend-box legend-social">
+		<ul class="list-inline">
+			<li><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" data-url="https://scotch.io/tutorials/angular-routing-using-ui-router" class="twitter-button sharrre"><span class="icon ion-social-twitter sbg-twitter" style="-webkit-transform: rotate(193.98deg); transform: rotate(193.98deg);"></span> 66</a></li>
+			<li><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" data-url="https://scotch.io/tutorials/angular-routing-using-ui-router" class="facebook-button sharrre"><span class="icon ion-social-facebook sbg-facebook" style="-webkit-transform: rotate(193.98deg); transform: rotate(193.98deg);"></span> 36</a></li>
+			<li><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" data-url="https://scotch.io/tutorials/angular-routing-using-ui-router" class="googleplus-button sharrre"><span class="icon ion-social-google sbg-googleplus" style="-webkit-transform: rotate(193.98deg); transform: rotate(193.98deg);"></span> 140</a></li>
+		</ul>
+	</div>
+
+	<div class="legend-box legend-action">
+		
+<div class="share-stat share-stat-action">
+	
+			<a href="http://plnkr.co/edit/IzimSVsstarlFviAm7S7?p=preview" class="btn-primary"> 
+			<span class="icon ion-ios-speedometer-outline"></span> View Code
+		</a>
+	
+	
+			<a href="http://embed.plnkr.co/IzimSVsstarlFviAm7S7/preview" class="btn-danger">
+			<span class="icon ion-ios-game-controller-b-outline"></span> View Demo
+		</a>
+	
+	</div>
+
+	
+	</div>
+
+	<div class="legend-box legend-outline">
+		<h5>Outline</h5>
+		<form>
+			<select class="form-control"><option value="overview">Overview</option><option value="sample-application" selected="selected">Sample Application</option><option value="setup">Setup</option><option value="nested-views-home-page">Nested Views Home Page</option><option value="multiple-views-about-page" selected="selected">Multiple Views About Page</option><option value="conclusion">Conclusion</option></select>
+		</form>						
+	</div>
+
+	
+	<div id="scroll-to-top"><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#" class="icon-right">
+		<span class="icon ion-umbrella"></span> 
+		<span class="scroll-to-top-text">Scroll to Top</span>
+	</a></div>
+</div></div>						</div>
+
+			<!-- PAGE CONTENT -->
+			<div class="page-content-inside">
+				<div class="page-content-primary">
+
+										<div class="content-ad clearfix">
+						<div id="bsap_1300582" class="bsap bsap_1300582" data-serve="CAAIP2T">
+<style type="text/css">
+div.bsap_1300582{width:100%;display:block;}div.bsap_1300582 a{width:728px;}div.bsap_1300582 a img{padding:0;}div.bsap_1300582 a em{font-style:normal;}div.bsap_1300582 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0;text-align:center;text-decoration:none;overflow:hidden;float:left;}
+div.bsap_1300582 img{border:0;clear:right;}
+div.bsap_1300582 a.adhere{display:block;color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}
+div.bsap_1300582 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}
+div.bsap_1300582 iframe{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0;text-align:center;text-decoration:none;overflow:hidden;float:left;}div.bsap_1300582 a{line-height:100%;}div.bsap_1300582 a.adhere{width:728px;height:90px;line-height:720%;}html>body div.bsap_1300582 a.adhere{width:726px;height:88px;}div.bsap_1300582 img.s{height:0;width:0;}div.bsap_1300582{line-height:9px;}div.bsap_1300582 .bsap_adhere2,div.bsap_1300582 iframe{float:left;}div.bsap_1300582 .bsap_adhere2 a{height:90px;width:20px;background:url(http:\/\/s3.buysellads.com\/ac\/ah20x90_1.gif) no-repeat 0 0;text-indent:-9999px;}
+</style>
+<a href="https://srv.buysellads.com/ads/click/x/GTND423ICV7DE53MCKY4YKQWCK7D62Q7F67IEZ3JCE7I6KJWC67DL5QKC6BDCKJLFTYIKK3EHJNCLSIZ" class="ad0 odd " title="WordPress Themes (Free Customer Support)" id="bsa_5520637" target="_blank" rel="nofollow">
+<img src="./AngularJS Routing Using UI-Router _ Scotch_files/211958-1394206589.jpg" width="728" height="90" alt=""></a>
+
+<div class="bsap_adhere">
+
+<a href="http://buysellads.com/buy/detail/219041/zone/1300582?utm_source=site_219041&utm_medium=website&utm_campaign=imagetext&utm_content=zone_1300582" class="">Advertise Here</a>
+
+</div>
+
+
+<script type="text/javascript" id="auto_1" class="ignoreme"> if (typeof(BSACallback) !== 'undefined') BSACallback(); </script></div>
+					</div>
+										
+					<div class="tile"><div class="tile-content"> AngularJS provides a great way to make single page applications. When creating single page applications, routing will be very important. We want our navigation to feel like a normal site and still not have our site refresh. We’ve already gone through Angular routing using the normal <a href="https://scotch.io/tutorials/javascript/single-page-apps-with-angularjs-routing-and-templating">ngRoute method</a>.<p></p>
+<p>Today we’ll be looking at routing using <a href="https://github.com/angular-ui/ui-router" target="_blank">UI-Router</a>.</p>
+<h2 id="overview"><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#overview"><span class="heading-link icon ion-link"></span> Overview</a></h2>
+<h3>What is AngularUI Router?</h3>
+<p>The UI-Router is a routing framework for AngularJS built by the <a href="http://angular-ui.github.io/" target="_blank">AngularUI team</a>. It provides a different approach than ngRoute in that it changes your application views based on <strong>state of the application</strong> and not just the route URL.</p>
+<h3>States vs URL Route</h3>
+<p>With this approach, your views and routes aren’t tied down to the site URL. This way, you can change the parts of your site using your routing even if the URL does not change.</p>
+<p>When using ngRoute, you’d have to use ngInclude or other methods and this could get confusing. Now that all of your states, routing, and views are handled in your one <code>.config()</code>, this would help when using a top-down view of your application.</p>
+<h2 id="sample-application"><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#sample-application"><span class="heading-link icon ion-link"></span> Sample Application</a></h2>
+<p>Let’s do something similar to the other <a href="http://plnkr.co/edit/dd8Nk9PDFotCQu4yrnDg?p=preview" target="_blank">routing tutorial</a> we made. Let’s create a <strong>Home</strong> and <strong>About</strong> page.</p>
+<h2 id="setup"><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#setup"><span class="heading-link icon ion-link"></span> Setup</a></h2>
+<p>Let’s get our application started. We will need a few files:</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token operator">-</span> index<span class="token punctuation">.</span>html                    <span class="token comment" spellcheck="true">// will hold the main template for our app</span>
+<span class="token operator">-</span> app<span class="token punctuation">.</span>js                        <span class="token comment" spellcheck="true">// our angular code</span>
+<span class="token operator">-</span> partial<span class="token operator">-</span>about<span class="token punctuation">.</span>html            <span class="token comment" spellcheck="true">// about page code</span>
+<span class="token operator">-</span> partial<span class="token operator">-</span>home<span class="token punctuation">.</span>html             <span class="token comment" spellcheck="true">// home page code</span>
+<span class="token operator">-</span> partial<span class="token operator">-</span>home<span class="token operator">-</span>list<span class="token punctuation">.</span>html        <span class="token comment" spellcheck="true">// injected into the home page</span>
+<span class="token operator">-</span> table<span class="token operator">-</span>data<span class="token punctuation">.</span>html               <span class="token comment" spellcheck="true">// re-usable table that we can place anywhere</span>
+</code>
+</pre>
+<p>With our application structure figured out, let’s fill out some files.</p>
+<pre class=" language-markup"><code class=" language-markup"><span class="token comment" spellcheck="true">&lt;!-- index.html --&gt;</span>
+
+<span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- CSS (load bootstrap) --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token style language-css"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span>
+        <span class="token selector"><span class="token class">.navbar</span> </span><span class="token punctuation">{</span> <span class="token property">border-radius</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- JS (load angular, ui-router, and our custom js file) --&gt;</span>
+    <span class="token script language-javascript"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><a class="token url-link" href="http://code.angularjs.org/1.2.13/angular.js">http://code.angularjs.org/1.2.13/angular.js</a><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+    <span class="token script language-javascript"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+    <span class="token script language-javascript"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- apply our angular app to our site --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>routerApp<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- NAVIGATION --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navbar navbar-inverse<span class="token punctuation">"</span></span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navigation<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navbar-header<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navbar-brand<span class="token punctuation">"</span></span> <span class="token attr-name">ui-sref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>AngularUI Router<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>nav navbar-nav<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">ui-sref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>home<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">ui-sref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>about<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- MAIN CONTENT --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ui-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code>
+</pre>
+<p>There’s our HTML file. We will use <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> to help with our styling. Notice that we also load up <code>ui-router</code> in addition to loading Angular. UI Router is separate from the Angular core, just like ngRoute is separate.</p>
+<p>When creating a link with UI-Router, you will use <code>ui-sref</code>. The href will be generated from this and you want this to point to a certain <strong>state</strong> of your application. These are created in your <code>app.js</code>.</p>
+<p>We also use <code>&lt;div ui-view&gt;&lt;/div&gt;</code> instead of ngRoute’s <code>&lt;div ng-view&gt;&lt;/div&gt;</code>.</p>
+<p>Let’s start up our Angular application now in <code>app.js</code>.</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// app.js</span>
+<span class="token keyword keyword-var">var</span> routerApp <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'routerApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'ui.router'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+routerApp<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token keyword keyword-function">function</span><span class="token punctuation">(</span>$stateProvider<span class="token punctuation">,</span> $urlRouterProvider<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    
+    $urlRouterProvider<span class="token punctuation">.</span><span class="token function">otherwise</span><span class="token punctuation">(</span><span class="token string">'/home'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    $stateProvider
+        
+        <span class="token comment" spellcheck="true">// HOME STATES AND NESTED VIEWS ========================================</span>
+        <span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token string">'home'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            url<span class="token punctuation">:</span> <span class="token string">'/home'</span><span class="token punctuation">,</span>
+            templateUrl<span class="token punctuation">:</span> <span class="token string">'partial-home.html'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        
+        <span class="token comment" spellcheck="true">// ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================</span>
+        <span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token string">'about'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// we'll get to this in a bit       </span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code>
+</pre>
+<p>Now we have created the <code>routerApp</code> that we already applied to our <code>body</code> in the <code>index.html</code> file.</p>
+<p>Here we have a <code>.state()</code> for home and for about. In home, we are using the template file <code>partial-home.html</code>.</p>
+<p>Let’s fill out our <code>partial-home.html</code> page so we can actually see information.</p>
+<pre class=" language-markup"><code class=" language-markup"><span class="token comment" spellcheck="true">&lt;!-- partial-home.html --&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jumbotron text-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>The Homey Page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This page demonstrates <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text-danger<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>nested<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span> views.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>    
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+</code>
+</pre>
+<p>Now we have our site! It doesn’t do much, but we have it.</p>
+<p><a href="./AngularJS Routing Using UI-Router _ Scotch_files/angular-ui-router-home-first.png"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/angular-ui-router-home-first.png" alt="angular-ui-router-home-first" width="981" height="405" class="alignnone size-full wp-image-2055 img-responsive img-thumbnail"></a> With the boring normal stuff out of the way, let’s get to see why UI-Router has some pretty cool features.</p>
+<h2 id="nested-views-home-page"><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#nested-views-home-page"><span class="heading-link icon ion-link"></span> Nested Views <small>Home Page</small></a></h2>
+<p>Let’s look at how we can nest views. We’ll add two buttons to our home page and from there, we will want to show off different information based on what is clicked.</p>
+<p>We’re going to add our buttons to <code>partial-home.html</code> and then go into our Angular file and see how we can change it to add nested views.</p>
+<pre data-line="7-8, 11" class=" language-markup"><code class=" language-markup"><span class="token comment" spellcheck="true">&lt;!-- partial-home.html --&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jumbotron text-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>The Homey Page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This page demonstrates <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text-danger<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>nested<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span> views.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>  
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">ui-sref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>.list<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>List<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">ui-sref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>.paragraph<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-danger<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Paragraph<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ui-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<div class=" line-highlight" data-start="7" data-end="8" style="top: 117px;"> 
+ 
+</div><div class=" line-highlight" data-start="11" style="top: 195px;"> 
+</div></code>
+</pre>
+<p>When linking to a nested view, we are going to use dot denotation: <code>ui-sref=".list"</code> and <code>ui-sref=".paragraph"</code>. These will be defined in our Angular file and once we set it up there, we will inject into our new <code>&lt;div ui-view&gt;&lt;/div&gt;</code>.</p>
+<p>In our <code>app.js</code> file, let’s create those nested states.</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// app.js</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+$stateProvider
+
+    <span class="token comment" spellcheck="true">// HOME STATES AND NESTED VIEWS ========================================</span>
+    <span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token string">'home'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        url<span class="token punctuation">:</span> <span class="token string">'/home'</span><span class="token punctuation">,</span>
+        templateUrl<span class="token punctuation">:</span> <span class="token string">'partial-home.html'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// nested list with custom controller</span>
+    <span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token string">'home.list'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        url<span class="token punctuation">:</span> <span class="token string">'/list'</span><span class="token punctuation">,</span>
+        templateUrl<span class="token punctuation">:</span> <span class="token string">'partial-home-list.html'</span><span class="token punctuation">,</span>
+        controller<span class="token punctuation">:</span> <span class="token keyword keyword-function">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            $scope<span class="token punctuation">.</span>dogs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Bernese'</span><span class="token punctuation">,</span> <span class="token string">'Husky'</span><span class="token punctuation">,</span> <span class="token string">'Goldendoodle'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// nested list with just some random string data</span>
+    <span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token string">'home.paragraph'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        url<span class="token punctuation">:</span> <span class="token string">'/paragraph'</span><span class="token punctuation">,</span>
+        template<span class="token punctuation">:</span> <span class="token string">'I could sure use a drink right now.'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code>
+</pre>
+<p>Now the ui-sref we defined in <code>home.html</code> are linked to an actual state. With <code>home.list</code> and <code>home.paragraph</code> created, those links will now take the template provided and inject it into <code>ui-view</code>.</p>
+<p>Last thing we need to do for the home page is define the <code>partial-home-list.html</code> file. We have also passed in a controller with a list of dogs that we will use in the template file.</p>
+<pre class=" language-markup"><code class=" language-markup"><span class="token comment" spellcheck="true">&lt;!-- partial-home-list.html --&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">ng-repeat</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dog in dogs<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>{{ dog }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+
+</code>
+</pre>
+<p>Now when we click <strong>List</strong>, it will inject our list of dogs into the template. Or if we click <strong>Paragraph</strong>, it will inject the string we gave.</p>
+<p><a href="./AngularJS Routing Using UI-Router _ Scotch_files/angular-routing-ui-router-home-list.png"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/angular-routing-ui-router-home-list.png" alt="angular-routing-ui-router-home-list" width="1035" height="457" class="alignnone size-full wp-image-2073 img-responsive img-thumbnail"></a> You can see how easy it is to change different parts of our application based on the state. We didn’t have to do any sort of work with ngInclude, ngShow, ngHide, or ngIf. This keeps our view files cleaner since all the work is in our <code>app.js</code>.</p>
+<p>Let’s move on and see how we can have multiple views at once.</p>
+<h2 id="multiple-views-about-page"><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#multiple-views-about-page"><span class="heading-link icon ion-link"></span> Multiple Views <small>About Page</small></a></h2>
+<p>Having multiple views in your application can be very powerful. Maybe you have a sidebar on your site that has things like Popular Posts, Recent Posts, Users, or whatever. These can all be separated out and injected into our template. Each will have its own controller and template file so our app stays clean.</p>
+<p>Having our application modular like this also lets us reuse data in different templates.</p>
+<p>For our <strong>About</strong> page, let’s make two columns and have each have its own data. We will handle the view first and then look at how we can do this using UI-Router.</p>
+<pre class=" language-markup"><code class=" language-markup"><span class="token comment" spellcheck="true">&lt;!-- partial-about.html --&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jumbotron text-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>The About Page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This page demonstrates <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text-danger<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>multiple<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span> and <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text-danger<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>named<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span> views.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- COLUMN ONE NAMED VIEW --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col-sm-6<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ui-view</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>columnOne<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    
+    <span class="token comment" spellcheck="true">&lt;!-- COLUMN TWO NAMED VIEW --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col-sm-6<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ui-view</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>columnTwo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>    
+
+</code>
+</pre>
+<p>There we have multiple views. One is named <code>columnOne</code> and the other is <code>columnTwo</code>.</p>
+<p><strong>Why would somebody use this approach?</strong> That’s a good question. Are we creating an application that is too modularized and that could get confusing? Taken from the official <a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views" target="_blank">UI-Router docs</a>, here is a solid example of why you would have multiple named views. In their example, they show off different parts of an application. Each part has its own data, so having each with its own controllers and template files makes building something like this easy.</p>
+<p>Now that our view is all created, let’s look at how we can apply template files and controllers to each view. We’ll go back to our <code>app.js</code>.</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// app.js</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token string">'about'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        url<span class="token punctuation">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span>
+        views<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+
+            <span class="token comment" spellcheck="true">// the main template will be placed here (relatively named)</span>
+            <span class="token string">''</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> templateUrl<span class="token punctuation">:</span> <span class="token string">'partial-about.html'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+            <span class="token comment" spellcheck="true">// the child views will be defined here (absolutely named)</span>
+            <span class="token string">'<a class="token email-link" href="mailto:columnOne@about">columnOne@about</a>'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> template<span class="token punctuation">:</span> <span class="token string">'Look I am a column!'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+            <span class="token comment" spellcheck="true">// for column two, we'll define a separate controller </span>
+            <span class="token string">'<a class="token email-link" href="mailto:columnTwo@about">columnTwo@about</a>'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> 
+                templateUrl<span class="token punctuation">:</span> <span class="token string">'table-data.html'</span><span class="token punctuation">,</span>
+                controller<span class="token punctuation">:</span> <span class="token string">'scotchController'</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// closes $routerApp.config()</span>
+
+
+<span class="token comment" spellcheck="true">// let's define the scotch controller that we call up in the about state</span>
+routerApp<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'scotchController'</span><span class="token punctuation">,</span> <span class="token keyword keyword-function">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    
+    $scope<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'test'</span><span class="token punctuation">;</span>
+   
+    $scope<span class="token punctuation">.</span>scotches <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            name<span class="token punctuation">:</span> <span class="token string">'Macallan 12'</span><span class="token punctuation">,</span>
+            price<span class="token punctuation">:</span> <span class="token number">50</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            name<span class="token punctuation">:</span> <span class="token string">'Chivas Regal Royal Salute'</span><span class="token punctuation">,</span>
+            price<span class="token punctuation">:</span> <span class="token number">10000</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            name<span class="token punctuation">:</span> <span class="token string">'Glenfiddich 1937'</span><span class="token punctuation">,</span>
+            price<span class="token punctuation">:</span> <span class="token number">20000</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+</code>
+</pre>
+<p><a href="./AngularJS Routing Using UI-Router _ Scotch_files/angular-routing-ui-router-about.png"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/angular-routing-ui-router-about.png" alt="angular-routing-ui-router-about" width="1095" height="603" class="alignnone size-full wp-image-2069 img-responsive img-thumbnail"></a> Just like that, our About page is ready to go. Now it may be confusing how we nested everything in the <code>views</code> for the about state. Why not define a templateUrl for the main page and then define the columns in a nested view object? The reason for this gives us a really great tool.</p>
+<h3>Relative vs Absolute Naming</h3>
+<p>UI-Router assigns every view to an absolute name. The structure for this is <code>viewName@stateName</code>. Since our main <code>ui-view</code> inside our <strong>about state</strong>, we gave it a blank name. The other two views because <code>columnOne@about</code> and <code>columnTwo@about</code>.</p>
+<p>Having the naming scheme this way let’s us define multiple views inside a single state. The docs explain this concept very well and I’d encourage taking a look at their <a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#wiki-view-names---relative-vs-absolute-names" target="_blank">examples</a>. Extremely powerful tools there.</p>
+<h2 id="conclusion"><a href="https://scotch.io/tutorials/angular-routing-using-ui-router#conclusion"><span class="heading-link icon ion-link"></span> Conclusion</a></h2>
+<p>This is an overview of the great tool that is <a href="https://github.com/angular-ui/ui-router" target="_blank">UI-Router</a>. The things you can do with it are incredible and when you look at your application as states instead of going the ngRoute option, Angular applications can easily be created to be modular and extensible. </p></div></div>
+
+					
+<div class="share-stat share-stat-action">
+	
+			<a href="http://plnkr.co/edit/IzimSVsstarlFviAm7S7?p=preview" class="btn-primary"> 
+			<span class="icon ion-ios-speedometer-outline"></span> View Code
+		</a>
+	
+	
+			<a href="http://embed.plnkr.co/IzimSVsstarlFviAm7S7/preview" class="btn-danger">
+			<span class="icon ion-ios-game-controller-b-outline"></span> View Demo
+		</a>
+	
+	</div>
+
+
+					
+				</div>
+
+									<!-- PAGE SECONDARY -->
+					<div class="page-secondary">
+						<div id="article-author" class="secondary-box clearfix">
+
+	<a href="https://scotch.io/author/chris" class="author-image">
+		<img id="author-avatar" src="./AngularJS Routing Using UI-Router _ Scotch_files/8a8bf3a2c952984defbd6bb48304b38e(1)" width="300" height="300" class="pull-left">
+	</a>
+	<div class="author-content">
+		<h3>
+			<a href="https://scotch.io/author/chris">
+				Chris Sevilleja			</a>
+						(<a href="https://twitter.com/sevilayha">@sevilayha</a>)
+					</h3>
+
+		<p>Design, development, and anything in between that I find interesting.</p>
+
+		<a id="view-contributions" class="btn btn-primary" href="https://scotch.io/author/chris">
+			<span class="icon ion-ios-flame-outline"></span> View My Articles
+		</a>
+	</div>
+
+</div>					</div>
+
+					<div class="yarpp-related">
+
+
+<div class="further-reading text-center">
+<section class="section-grid section-inverse">
+
+	<div class="page-header text-center">
+		<h2>Read Next</h2>
+	</div>
+
+	<div class="container">
+			
+		
+<div id="post-3336" class="card ">
+	
+	<div class="card-img-container">
+		<a href="https://scotch.io/tutorials/3-simple-tips-for-using-ui-router" style="background-image:url(&#39;https://cask.scotch.io/2014/07/3-tips-ui-router-450x188.jpg&#39;)" class="card-img"></a>
+		<div class="card-favorite"><span class="wpfp-span"><a class="wpfp-link" href="https://scotch.io/tutorials/angular-routing-using-ui-router?wpfpaction=add&postid=3336" title="&lt;span class=&quot;icon ion-android-star-outline&quot;&gt;&lt;/span&gt; Favorite" rel="nofollow"><span class="icon ion-android-star-outline"></span> Favorite</a></span></div>
+	</div>
+
+	<div class="card-content">
+		<div class="card-meta">
+						<div class="meta-author">
+ 				<a href="https://scotch.io/author/chris">
+ 					<img src="./AngularJS Routing Using UI-Router _ Scotch_files/8a8bf3a2c952984defbd6bb48304b38e(2)" width="40" height="40">
+ 				</a>
+			</div>
+			<span class="meta-date meta-box">Jul 14</span>
+
+						<span class="meta-comments meta-box">
+				<span class="icon ion-ios-chatboxes-outline"></span>
+				<a href="https://scotch.io/tutorials/3-simple-tips-for-using-ui-router#disqus_thread">26</a>
+			</span>
+			
+			<span class="meta-pulse meta-box">
+				<a href="https://scotch.io/tutorials/3-simple-tips-for-using-ui-router" data-url="https://scotch.io/tutorials/3-simple-tips-for-using-ui-router" class="card-share-number sharrre"><span class="icon ion-ios-pulse"></span> 56 Shares</a>
+			</span>
+		</div>
+
+		<h2><a href="https://scotch.io/tutorials/3-simple-tips-for-using-ui-router">
+			3 Simple Tips for Using UI-Router		</a></h2>
+		
+	</div>	
+
+	
+	<span class="meta-tags">
+		<a href="https://scotch.io/tag/angular-js" title="angularJS Tag" class="tag-angular-js">angularJS</a> 
+	</span>
+
+</div>			
+		
+<div id="post-2990" class="card ">
+	
+	<div class="card-img-container">
+		<a href="https://scotch.io/tutorials/angularjs-multi-step-form-using-ui-router" style="background-image:url(&#39;https://cask.scotch.io/2014/06/angular-ui-router-multi-step-form1-450x188.jpg&#39;)" class="card-img"></a>
+		<div class="card-favorite"><span class="wpfp-span"><a class="wpfp-link" href="https://scotch.io/tutorials/angular-routing-using-ui-router?wpfpaction=add&postid=2990" title="&lt;span class=&quot;icon ion-android-star-outline&quot;&gt;&lt;/span&gt; Favorite" rel="nofollow"><span class="icon ion-android-star-outline"></span> Favorite</a></span></div>
+	</div>
+
+	<div class="card-content">
+		<div class="card-meta">
+						<div class="meta-author">
+ 				<a href="https://scotch.io/author/chris">
+ 					<img src="./AngularJS Routing Using UI-Router _ Scotch_files/8a8bf3a2c952984defbd6bb48304b38e(2)" width="40" height="40">
+ 				</a>
+			</div>
+			<span class="meta-date meta-box">Jun 4</span>
+
+						<span class="meta-comments meta-box">
+				<span class="icon ion-ios-chatboxes-outline"></span>
+				<a href="https://scotch.io/tutorials/angularjs-multi-step-form-using-ui-router#disqus_thread">59</a>
+			</span>
+			
+			<span class="meta-pulse meta-box">
+				<a href="https://scotch.io/tutorials/angularjs-multi-step-form-using-ui-router" data-url="https://scotch.io/tutorials/angularjs-multi-step-form-using-ui-router" class="card-share-number sharrre"><span class="icon ion-ios-pulse"></span> 200 Shares</a>
+			</span>
+		</div>
+
+		<h2><a href="https://scotch.io/tutorials/angularjs-multi-step-form-using-ui-router">
+			AngularJS Multi-Step Form Using UI Router		</a></h2>
+		
+	</div>	
+
+	
+	<span class="meta-tags">
+		<a href="https://scotch.io/tag/angular-js" title="angularJS Tag" class="tag-angular-js">angularJS</a> 
+	</span>
+
+</div>			
+		
+<div id="post-447" class="card ">
+	
+	<div class="card-img-container">
+		<a href="https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating" style="background-image:url(&#39;https://cask.scotch.io/2013/11/angular-routing-450x188.jpg&#39;)" class="card-img"></a>
+		<div class="card-favorite"><span class="wpfp-span"><a class="wpfp-link" href="https://scotch.io/tutorials/angular-routing-using-ui-router?wpfpaction=add&postid=447" title="&lt;span class=&quot;icon ion-android-star-outline&quot;&gt;&lt;/span&gt; Favorite" rel="nofollow"><span class="icon ion-android-star-outline"></span> Favorite</a></span></div>
+	</div>
+
+	<div class="card-content">
+		<div class="card-meta">
+						<div class="meta-author">
+ 				<a href="https://scotch.io/author/chris">
+ 					<img src="./AngularJS Routing Using UI-Router _ Scotch_files/8a8bf3a2c952984defbd6bb48304b38e(2)" width="40" height="40">
+ 				</a>
+			</div>
+			<span class="meta-date meta-box">Nov 4</span>
+
+						<span class="meta-comments meta-box">
+				<span class="icon ion-ios-chatboxes-outline"></span>
+				<a href="https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating#disqus_thread">85</a>
+			</span>
+			
+			<span class="meta-pulse meta-box">
+				<a href="https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating" data-url="https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating" class="card-share-number sharrre"><span class="icon ion-ios-pulse"></span> 117 Shares</a>
+			</span>
+		</div>
+
+		<h2><a href="https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating">
+			Single Page Apps with AngularJS Routing and Templating		</a></h2>
+		
+	</div>	
+
+	
+	<span class="meta-tags">
+		<a href="https://scotch.io/tag/angular-js" title="angularJS Tag" class="tag-angular-js">angularJS</a> 
+	</span>
+
+</div>			
+		
+<div id="post-2608" class="card ">
+	
+	<div class="card-img-container">
+		<a href="https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4" style="background-image:url(&#39;https://cask.scotch.io/2014/04/using-the-express-4-router-450x188.jpg&#39;)" class="card-img"></a>
+		<div class="card-favorite"><span class="wpfp-span"><a class="wpfp-link" href="https://scotch.io/tutorials/angular-routing-using-ui-router?wpfpaction=add&postid=2608" title="&lt;span class=&quot;icon ion-android-star-outline&quot;&gt;&lt;/span&gt; Favorite" rel="nofollow"><span class="icon ion-android-star-outline"></span> Favorite</a></span></div>
+	</div>
+
+	<div class="card-content">
+		<div class="card-meta">
+						<div class="meta-author">
+ 				<a href="https://scotch.io/author/chris">
+ 					<img src="./AngularJS Routing Using UI-Router _ Scotch_files/8a8bf3a2c952984defbd6bb48304b38e(2)" width="40" height="40">
+ 				</a>
+			</div>
+			<span class="meta-date meta-box">Apr 14</span>
+
+						<span class="meta-comments meta-box">
+				<span class="icon ion-ios-chatboxes-outline"></span>
+				<a href="https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4#disqus_thread">50</a>
+			</span>
+			
+			<span class="meta-pulse meta-box">
+				<a href="https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4" data-url="https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4" class="card-share-number sharrre"><span class="icon ion-ios-pulse"></span> 28 Shares</a>
+			</span>
+		</div>
+
+		<h2><a href="https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4">
+			Learn to Use the New Router in ExpressJS 4.0		</a></h2>
+		
+	</div>	
+
+	
+	<span class="meta-tags">
+		<a href="https://scotch.io/tag/node-js" title="node.js Tag" class="tag-node-js">node.js</a> 
+	</span>
+
+</div>			
+		
+<div id="post-174" class="card ">
+	
+	<div class="card-img-container">
+		<a href="https://scotch.io/tutorials/simple-and-easy-laravel-routing" style="background-image:url(&#39;https://cask.scotch.io/2013/10/laravel-routing-450x188.jpg&#39;)" class="card-img"></a>
+		<div class="card-favorite"><span class="wpfp-span"><a class="wpfp-link" href="https://scotch.io/tutorials/angular-routing-using-ui-router?wpfpaction=add&postid=174" title="&lt;span class=&quot;icon ion-android-star-outline&quot;&gt;&lt;/span&gt; Favorite" rel="nofollow"><span class="icon ion-android-star-outline"></span> Favorite</a></span></div>
+	</div>
+
+	<div class="card-content">
+		<div class="card-meta">
+						<div class="meta-author">
+ 				<a href="https://scotch.io/author/chris">
+ 					<img src="./AngularJS Routing Using UI-Router _ Scotch_files/8a8bf3a2c952984defbd6bb48304b38e(2)" width="40" height="40">
+ 				</a>
+			</div>
+			<span class="meta-date meta-box">Oct 8</span>
+
+						<span class="meta-comments meta-box">
+				<span class="icon ion-ios-chatboxes-outline"></span>
+				<a href="https://scotch.io/tutorials/simple-and-easy-laravel-routing#disqus_thread">37</a>
+			</span>
+			
+			<span class="meta-pulse meta-box">
+				<a href="https://scotch.io/tutorials/simple-and-easy-laravel-routing" data-url="https://scotch.io/tutorials/simple-and-easy-laravel-routing" class="card-share-number sharrre"><span class="icon ion-ios-pulse"></span> 15 Shares</a>
+			</span>
+		</div>
+
+		<h2><a href="https://scotch.io/tutorials/simple-and-easy-laravel-routing">
+			Simple and Easy Laravel Routing		</a></h2>
+		
+	</div>	
+
+	
+	<span class="meta-tags">
+		<a href="https://scotch.io/tag/laravel" title="laravel Tag" class="tag-laravel">laravel</a> 
+	</span>
+
+</div>			
+		
+<div id="post-1730" class="card ">
+	
+	<div class="card-img-container">
+		<a href="https://scotch.io/tutorials/animating-angularjs-apps-ngview" style="background-image:url(&#39;https://cask.scotch.io/2014/02/animating-angular-apps-ngview-450x188.jpg&#39;)" class="card-img"></a>
+		<div class="card-favorite"><span class="wpfp-span"><a class="wpfp-link" href="https://scotch.io/tutorials/angular-routing-using-ui-router?wpfpaction=add&postid=1730" title="&lt;span class=&quot;icon ion-android-star-outline&quot;&gt;&lt;/span&gt; Favorite" rel="nofollow"><span class="icon ion-android-star-outline"></span> Favorite</a></span></div>
+	</div>
+
+	<div class="card-content">
+		<div class="card-meta">
+						<div class="meta-author">
+ 				<a href="https://scotch.io/author/chris">
+ 					<img src="./AngularJS Routing Using UI-Router _ Scotch_files/8a8bf3a2c952984defbd6bb48304b38e(2)" width="40" height="40">
+ 				</a>
+			</div>
+			<span class="meta-date meta-box">Feb 19</span>
+
+						<span class="meta-comments meta-box">
+				<span class="icon ion-ios-chatboxes-outline"></span>
+				<a href="https://scotch.io/tutorials/animating-angularjs-apps-ngview#disqus_thread">25</a>
+			</span>
+			
+			<span class="meta-pulse meta-box">
+				<a href="https://scotch.io/tutorials/animating-angularjs-apps-ngview" data-url="https://scotch.io/tutorials/animating-angularjs-apps-ngview" class="card-share-number sharrre"><span class="icon ion-ios-pulse"></span> 103 Shares</a>
+			</span>
+		</div>
+
+		<h2><a href="https://scotch.io/tutorials/animating-angularjs-apps-ngview">
+			Animating AngularJS Apps: ngView		</a></h2>
+		
+	</div>	
+
+	
+	<span class="meta-tags">
+		<a href="https://scotch.io/tag/angular-js" title="angularJS Tag" class="tag-angular-js">angularJS</a> 
+	</span>
+
+</div>		</div>
+
+</section>
+</div>
+</div>
+
+					<div class="page-secondary page-secondary-two">
+						<div class="article-announcement">
+<div class="row">
+<div class="col-sm-10 col-sm-offset-1">
+
+    <div class="announcement-img pull-left">
+        <a href="https://leanpub.com/mean-machine" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Leanpub&#39;, &#39;Click&#39;, &#39;MEAN Machine - Article&#39;]);"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/mean-machine-page.jpeg"></a>
+    </div>
+    <div class="announcement-content">
+        <p><small class="text-muted">scotch.io books presents:</small></p>
+
+        <h3>MEAN Machine</h3>
+
+        <p>Learn Node, Angular, Express, and MongoDB from scratch.<br>No experience necessary.</p>
+
+        <a href="https://leanpub.com/mean-machine" class="btn btn-danger" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Leanpub&#39;, &#39;Click&#39;, &#39;MEAN Machine - Article&#39;]);">Learn About the Book <span class="ti-arrow-circle-right"></span></a>
+    </div>
+        
+</div>
+</div>
+</div>
+						<div id="stay-connected" class="text-center secondary-box">
+
+	<div class="connected-container">
+		<a class="share-rss sbg-rss" href="https://scotch.io/feed">
+			<span class="icon ion-social-rss-outline"></span> Subscribe
+		</a>
+
+		<a class="sbg-twitter" href="http://twitter.com/scotch_io"> 
+			<span class="icon ion-social-twitter-outline"></span> Follow
+		</a>
+
+		<a class="sbg-facebook" href="http://www.facebook.com/scotchdevelopment"> 
+			<span class="icon ion-social-facebook-outline"></span> Like
+		</a>
+
+		<a class="sbg-googleplus" href="http://plus.google.com/b/113854128330570384219/+ScotchIo/posts">
+			<span class="icon ion-social-googleplus-outline"></span> +1
+		</a>
+	</div>
+
+	<h4><span class="icon ion-ios-email"></span></h4>
+	<p>Get valuable tips, articles, and resources straight to your inbox. Every Tuesday.</p>
+
+	<!-- Begin MailChimp Signup Form -->
+	<div id="mc_embed_signup">
+		<form action="https://scotch.us3.list-manage.com/subscribe/post?u=1c412c864c03eadaf07ccd61e&id=a818d504d4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-inline" target="_blank" novalidate="">
+			
+		<input type="hidden" name="LOCATION" id="LOCATION" value="article_end">
+
+		<div class="mc-field-group form-group">
+			<input type="email" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Email Address">
+		</div>
+
+		<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-primary">
+
+		<div id="mce-responses" class="clear">
+			<div class="response" id="mce-error-response" style="display:none"></div>
+			<div class="response" id="mce-success-response" style="display:none"></div>
+		</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+	    <div style="position: absolute; left: -5000px;"><input type="text" name="b_1c412c864c03eadaf07ccd61e_a818d504d4" value=""></div>
+	</form>
+	</div>
+	<!--End mc_embed_signup-->
+	
+</div>						<div id="comment-section" class="secondary-box">
+							<div id="disqus_thread"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./AngularJS Routing Using UI-Router _ Scotch_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 7800px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+						</div>
+					</div>
+				
+			</div>
+
+		</div>
+		<div class="page-sidebar">
+
+						<!-- SIDEBAR -->
+			<div class="page-sidebar-inside">
+				<div class="sidebar-section ad-side clearfix">
+	<div class="ad-sidebar clearfix">
+		<div id="bsap_1291897" class="bsap bsap_1291897" data-serve="CA7D52E">
+<style type="text/css">
+div.bsap_1291897{width:300px;display:block;}div.bsap_1291897 a{width:300px;}div.bsap_1291897 a img{padding:0;}div.bsap_1291897 a em{font-style:normal;}div.bsap_1291897 a{}
+div.bsap_1291897 img{border:0;clear:right;border-radius:5px;margin-bottom:20px;}
+div.bsap_1291897 a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}
+div.bsap_1291897 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}
+div.bsap_1291897 iframe{}div.bsap_1291897 a{line-height:100%;}div.bsap_1291897 a.adhere{width:300px;height:250px;line-height:2000%;}html>body div.bsap_1291897 a.adhere{width:298px;height:248px;}div.bsap_1291897 img.s{height:0;width:0;}div.bsap_1291897{line-height:9px;}div.bsap_1291897 .bsap_adhere a{height:19px !important;width:298px !important;font-size:10px;background:#f1f1f1;border:1px solid #e1e1e1;border-top:none;border-radius: 0 0 2px 2px;line-height:16px;}.bsap_backfillframe{border:0;}
+</style>
+<!--INLINE--><script type="text/javascript" id="auto_2" class="ignoreme">
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type="text/javascript" id="auto_3" class="ignoreme">
+googletag.cmd.push(function() {
+googletag.defineSlot('/8691100/scotchio_med_rec_ATF_300x250_bsazone_1291897', [300, 250], 'div-gpt-ad-1393949743521-0').addService(googletag.pubads());
+googletag.pubads().set("page_url", "http://scotch.io");
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+<!-- scotchio_med_rec_ATF_300x250_bsazone_1291897 -->
+<div id="div-gpt-ad-1393949743521-0" style="width:300px; height:250px;">
+<script type="text/javascript" id="auto_4" class="ignoreme">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1393949743521-0'); });
+</script>
+<div id="google_ads_iframe_/8691100/scotchio_med_rec_ATF_300x250_bsazone_1291897_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/8691100/scotchio_med_rec_ATF_300x250_bsazone_1291897_0" name="google_ads_iframe_/8691100/scotchio_med_rec_ATF_300x250_bsazone_1291897_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="javascript:"<html><body style='background:transparent'></body></html>"" style="border: 0px; vertical-align: bottom;"></iframe></div><iframe id="google_ads_iframe_/8691100/scotchio_med_rec_ATF_300x250_bsazone_1291897_0__hidden__" name="google_ads_iframe_/8691100/scotchio_med_rec_ATF_300x250_bsazone_1291897_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="javascript:"<html><body style='background:transparent'></body></html>"" style="border: 0px; vertical-align: bottom; visibility: hidden; display: none;"></iframe></div>
+
+<script type="text/javascript" id="auto_5" class="ignoreme"> if (typeof(_bsap_serving_callback) !== 'undefined') _bsap_serving_callback(21587, 'CA7D52E', ''); </script>
+<script type="text/javascript" id="auto_6" class="ignoreme"> if (typeof(BSACallback) !== 'undefined') BSACallback(); </script></div>
+	</div>
+	<div class="ad-sidebar clearfix">
+		<div id="bsap_1300581" class="bsap bsap_1300581" data-serve="CAAIPKY">
+<style type="text/css">
+div.bsap_1300581{width:100%;display:block;}div.bsap_1300581 a{width:125px;}div.bsap_1300581 a img{padding:0;}div.bsap_1300581 a em{font-style:normal;}div.bsap_1300581 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:20px 10px 0 10px;text-align:center;text-decoration:none;overflow:hidden;float:left;}
+div.bsap_1300581 img{border:0;clear:right;border-radius:5px;}
+div.bsap_1300581 a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;border-radius:5px;transition:0.3s ease all;-moz-transition:0.3s ease all;-webkit-transition:0.3s ease all;}
+div.bsap_1300581 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}
+div.bsap_1300581 iframe{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:20px 10px 0 10px;text-align:center;text-decoration:none;overflow:hidden;float:left;}div.bsap_1300581 a{line-height:100%;}div.bsap_1300581 a.adhere{width:125px;height:125px;line-height:1000%;}html>body div.bsap_1300581 a.adhere{width:123px;height:123px;}div.bsap_1300581 img.s{height:0;width:0;}
+</style>
+<a href="https://srv.buysellads.com/ads/click/x/GTND423ICV7DE53MCVALYKQWCK7D623YCEYDVZ3JCE7I6KJICYSDT2QKC6BDCKJLFTYIKK3EHJNCLSIZ" class="ad0 odd " title="HipChat" id="bsa_5747824" target="_blank" rel="nofollow">
+<img src="./AngularJS Routing Using UI-Router _ Scotch_files/269809-1431718624.jpg" width="125" height="125" alt=""></a><a href="https://srv.buysellads.com/ads/click/x/GTND423ICV7DE53MCVALYKQWCK7D62QYCKSILZ3JCE7I6KJMCVADC27KC6BDCKJLFTYIKK3EHJNCLSIZ" class="ad1  even" title="The Ultimate WordPress Theme" id="bsa_5461422" target="_blank" rel="nofollow">
+<img src="./AngularJS Routing Using UI-Router _ Scotch_files/223418-1400702611.jpg" width="125" height="125" alt=""></a><a href="https://srv.buysellads.com/ads/click/x/GTND423ICV7DE53MCVALYKQWCK7D62JJCWADKZ3JCE7I6KJWCVSDE2QKC6BDCKJLFTYIKK3EHJNCLSIZ" class="ad2 odd " title="The GoJS Recentering Radial Social Graph sample - one of dozens" id="bsa_5552503" target="_blank" rel="nofollow">
+<img src="./AngularJS Routing Using UI-Router _ Scotch_files/184538-1377108033.png" width="125" height="125" alt=""></a><!-- no ad -->
+
+<a href="http://buysellads.com/buy/detail/219041/zone/1300581?utm_source=site_219041&utm_medium=website&utm_campaign=imagetext&utm_content=zone_1300581" class="adhere">Advertise Here</a>
+
+
+<script type="text/javascript" id="auto_7" class="ignoreme"> if (typeof(BSACallback) !== 'undefined') BSACallback(); </script></div>
+	</div>
+</div>
+
+<div class="sidebar-section sidebar-social clearfix">
+	<div class="sidebar-social-box clearfix">
+		<div class="sidebar-social-top clearfix">
+			<ul class="list-unstyled">
+				<li><a href="https://www.facebook.com/scotchdevelopment" class="sbg-facebook">
+					<span class="icon ion-social-facebook-outline"></span>
+				</a></li>
+				<li><a href="https://twitter.com/scotch_io" class="sbg-twitter">
+					<span class="icon ion-social-twitter-outline"></span>
+				</a></li>
+				<li><a href="https://plus.google.com/+ScotchIo/posts" class="sbg-googleplus">
+					<span class="icon ion-social-googleplus-outline"></span>
+				</a></li>
+				<li><a href="https://feeds.feedblitz.com/scotch_io" class="sbg-rss">
+					<span class="icon ion-social-rss-outline"></span>
+				</a></li>
+			</ul>
+		</div>
+		<div class="sidebar-social-bottom clearfix">
+			<div class="text-center">
+				<a href="https://scotch.io/books/build-your-first-node-js-app">
+					<img src="./AngularJS Routing Using UI-Router _ Scotch_files/first-node-app-small.png" class="img-repsonsive">
+				</a>
+			</div>
+			<p>Subscribe and get our FREE eBook: <a href="https://scotch.io/books/build-your-first-node-js-app">Build Your First Node.js App</a></p>
+			<!-- Begin MailChimp Signup Form -->
+			<div id="mc_embed_signup">
+			<form action="https://scotch.us3.list-manage.com/subscribe/post?u=1c412c864c03eadaf07ccd61e&id=a818d504d4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+
+			<input type="hidden" name="LOCATION" id="LOCATION" value="sidebar_top">
+
+			<div class="mc-field-group form-group">
+				<input type="email" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Email Address">
+			</div>
+				<div id="mce-responses" class="clear">
+					<div class="response" id="mce-error-response" style="display:none"></div>
+					<div class="response" id="mce-success-response" style="display:none"></div>
+				</div>
+			    <div style="position: absolute; left: -5000px;"><input type="text" name="b_1c412c864c03eadaf07ccd61e_a818d504d4" value=""></div>
+				<div class="clear text-center"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-primary btn-sm btn-block"></div>
+			</form>
+			</div>
+			<!--End mc_embed_signup-->
+		</div>
+	</div>
+</div>
+
+<div class="sidebar-section sidebar-popular clearfix">
+	<h4><span class="icon ion-beer"></span> Popular on Scotch</h4>
+
+	
+	<ul>
+					<li class="clearfix"><a href="https://scotch.io/tutorials/make-a-mobile-app-with-reactjs-in-30-minutes">
+				<div class="popular-img" style="background-image:url(https://cask.scotch.io/2015/03/newcoverforreapp-450x188.png)"></div>
+				<div class="popular-text">Make a Mobile App with ReactJS in 30 Minutes</div>
+			</a></li>
+					<li class="clearfix"><a href="https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design">
+				<div class="popular-img" style="background-image:url(https://cask.scotch.io/2015/03/solid-object-oriented-design-450x188.jpg)"></div>
+				<div class="popular-text">S.O.L.I.D: The First 5 Principles of Object Oriented Design</div>
+			</a></li>
+					<li class="clearfix"><a href="https://scotch.io/bar-talk/10-blissful-bootstraps-tools-and-templates-for-quality-jquery-mobile-development">
+				<div class="popular-img" style="background-image:url(https://cask.scotch.io/2015/04/10-blissful-bootstrap-tools-450x188.jpg)"></div>
+				<div class="popular-text">10 Blissful Bootstrap Tools And Templates For Quality jQuery Mobile Development</div>
+			</a></li>
+					<li class="clearfix"><a href="https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens">
+				<div class="popular-img" style="background-image:url(https://cask.scotch.io/2014/11/nodejs-token-based-authentication-450x188.png)"></div>
+				<div class="popular-text">Authenticate a Node.js API with JSON Web Tokens</div>
+			</a></li>
+					<li class="clearfix"><a href="https://scotch.io/tutorials/learn-meteor-js-from-scratch-build-a-polling-app">
+				<div class="popular-img" style="background-image:url(https://cask.scotch.io/2015/04/first-meteorjs-application-450x188.png)"></div>
+				<div class="popular-text">Learn Meteor.js From Scratch: Build a Polling App</div>
+			</a></li>
+					<li class="clearfix"><a href="https://scotch.io/tutorials/building-responsive-email-templates-with-ink">
+				<div class="popular-img" style="background-image:url(https://cask.scotch.io/2015/04/ink-450x188.jpg)"></div>
+				<div class="popular-text">Building Responsive Email Templates with Ink</div>
+			</a></li>
+					<li class="clearfix"><a href="https://scotch.io/tutorials/building-a-slack-clone-in-meteor-js-getting-started">
+				<div class="popular-img" style="background-image:url(https://cask.scotch.io/2015/05/slack-clone-in-meteor-getting-started-450x188.png)"></div>
+				<div class="popular-text">Building a Slack Clone in Meteor.js: Getting Started</div>
+			</a></li>
+			</ul>
+
+</div>
+
+<div class="sidebar-section ad-side clearfix text-center">
+	<div id="bsap_1300589" class="bsap bsap_1300589" data-serve="CAAIP5T">
+<style type="text/css">
+div.bsap_1300589{width:300px;display:block;}div.bsap_1300589 a{width:300px;}div.bsap_1300589 a img{padding:0;}div.bsap_1300589 a em{font-style:normal;}div.bsap_1300589 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0 auto;text-align:center;text-decoration:none;overflow:hidden;}
+div.bsap_1300589 img{border:0;clear:right;}
+div.bsap_1300589 a.adhere{display:block;padding-bottom:7px;padding-top:7px;color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}
+div.bsap_1300589 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}
+div.bsap_1300589 iframe{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0 auto;text-align:center;text-decoration:none;overflow:hidden;}div.bsap_1300589 a{line-height:100%;}div.bsap_1300589 a.adhere{width:300px;height:600px;line-height:4800%;}html>body div.bsap_1300589 a.adhere{width:298px;height:598px;}div.bsap_1300589 img.s{height:0;width:0;}div.bsap_1300589{line-height:9px;}div.bsap_1300589 .bsap_adhere a{height:19px !important;width:298px !important;font-size:10px;background:#f1f1f1;border:1px solid #e1e1e1;border-top:none;border-radius: 0 0 2px 2px;line-height:16px;}.bsap_backfillframe{border:0;}
+</style>
+<!--INLINE--><script type="text/javascript" id="auto_8" class="ignoreme">
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  (function() {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') +
+      '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+  })();
+</script>
+
+<script type="text/javascript" id="auto_9" class="ignoreme">
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/8691100/61307740', [300, 600], 'div-gpt-ad-1429788363486-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<!-- /8691100/61307740 -->
+<div id="div-gpt-ad-1429788363486-0" style="height:600px; width:300px;">
+<script type="text/javascript" id="auto_10" class="ignoreme">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1429788363486-0'); });
+</script>
+<div id="google_ads_iframe_/8691100/61307740_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/8691100/61307740_0" name="google_ads_iframe_/8691100/61307740_0" width="300" height="600" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="javascript:"<html><body style='background:transparent'></body></html>"" style="border: 0px; vertical-align: bottom;"></iframe></div></div>
+
+<script type="text/javascript" id="auto_11" class="ignoreme"> if (typeof(_bsap_serving_callback) !== 'undefined') _bsap_serving_callback(31020, 'CAAIP5T', ''); </script>
+
+<div class="bsap_adhere">
+
+<a href="http://buysellads.com/buy/detail/219041/zone/1300589?utm_source=site_219041&utm_medium=website&utm_campaign=imagetext&utm_content=zone_1300589" class="">Advertise Here</a>
+
+</div>
+
+
+<script type="text/javascript" id="auto_12" class="ignoreme"> if (typeof(BSACallback) !== 'undefined') BSACallback(); </script></div>
+</div>
+
+<div class="sidebar-section sidebar-scotch-projects text-center clearfix">
+<h4><span class="icon ion-erlenmeyer-flask"></span> Projects By Scotch</h4>
+<div class="sidebar-scotch-project-inside">
+
+	<a href="http://bit.ly/1FxJ3TI" class="sidebar-scotch-project">
+		<div class="sidebar-scotch-project-img" style="background-image:url(https://cask.scotch.io/2014/12/title_page.jpg);"></div>
+		<h5>MEAN Machine</h5>
+		<p>The beginner's book to Node and Angular</p>
+	</a>
+
+	<a href="http://bit.ly/1PY0ujh" class="sidebar-scotch-project">
+		<div class="sidebar-scotch-project-img" style="background-image:url(https://cask.scotch.io/2014/10/banner1.jpg);"></div>
+		<h5>Scotch Box</h5>
+		<p>A Vagrant LAMP Stack That Just Works</p>
+	</a>
+
+	<a href="http://bit.ly/1QJLLK5" class="sidebar-scotch-project">
+		<div class="sidebar-scotch-project-img" style="background-image:url(https://cask.scotch.io/2014/10/scotch-panels-cover-1.jpg);"></div>
+		<h5>Scotch Panels</h5>
+		<p>Dead simple Off Canvas jQuery Plugin</p>
+	</a>
+</div>
+</div>
+
+
+<div class="sticky-wrapper" style="height: 763px;"><div class="sidebar-sticky stuck" style="left: 864.078125px;">
+		<div class="clearfix">
+		<div id="bsap_1302017" class="bsap bsap_1302017" data-serve="C6YIKK7W">
+<style type="text/css">
+div.bsap_1302017{width:100%;display:block;}div.bsap_1302017 a{width:300px;}div.bsap_1302017 a img{padding:0;}div.bsap_1302017 a em{font-style:normal;}div.bsap_1302017 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0;text-align:center;text-decoration:none;overflow:hidden;float:left;}
+div.bsap_1302017 img{border:0;clear:right;}
+div.bsap_1302017 a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}
+div.bsap_1302017 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}
+div.bsap_1302017 iframe{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0;text-align:center;text-decoration:none;overflow:hidden;float:left;}div.bsap_1302017 a{line-height:100%;}div.bsap_1302017 a.adhere{width:300px;height:250px;line-height:2000%;}html>body div.bsap_1302017 a.adhere{width:298px;height:248px;}div.bsap_1302017 img.s{height:0;width:0;}div.bsap_1302017{line-height:9px;}div.bsap_1302017 .bsap_adhere a{height:19px !important;width:298px !important;font-size:10px;background:#f1f1f1;border:1px solid #e1e1e1;border-top:none;border-radius: 0 0 2px 2px;line-height:16px;}.bsap_backfillframe{border:0;}
+</style>
+<iframe width="300" height="250" id="ad_1302017_backfill2_frame" src="./AngularJS Routing Using UI-Router _ Scotch_files/raw_5774e2521aae4ed1d221554b532d50d3.html" frameborder="0" class="bsap_adframe" scrolling="no"></iframe>
+
+<script type="text/javascript" id="auto_13" class="ignoreme"> if (typeof(_bsap_serving_callback) !== 'undefined') _bsap_serving_callback(29898, 'C6YIKK7W', ''); </script>
+
+<div class="bsap_adhere">
+
+<a href="http://buysellads.com/buy/detail/219041/zone/1302017?utm_source=site_219041&utm_medium=website&utm_campaign=imagetext&utm_content=zone_1302017" class="">Advertise Here</a>
+
+</div>
+
+
+<script type="text/javascript" id="auto_14" class="ignoreme"> if (typeof(BSACallback) !== 'undefined') BSACallback(); </script></div>
+	</div>
+	
+	<div class="sidebar-email sidebar-section sidebar-option hidden">
+		<h4>
+			<span class="icon ion-ios-email"></span>
+			The Newsletter
+		</h4>
+		<p class="text-center">Subscribe and get our free eBook: <a href="https://scotch.io/books/build-your-first-node-js-app">Build Your First Node App</a>.</p>
+		<!-- Begin MailChimp Signup Form -->
+		<div id="mc_embed_signup">
+		<form action="https://scotch.us3.list-manage.com/subscribe/post?u=1c412c864c03eadaf07ccd61e&id=a818d504d4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+
+		<input type="hidden" name="LOCATION" id="LOCATION" value="sidebar_bottom">
+
+		<div class="mc-field-group form-group">
+			<input type="email" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Email Address">
+		</div>
+			<div id="mce-responses" class="clear">
+				<div class="response" id="mce-error-response" style="display:none"></div>
+				<div class="response" id="mce-success-response" style="display:none"></div>
+			</div>
+		    <div style="position: absolute; left: -5000px;"><input type="text" name="b_1c412c864c03eadaf07ccd61e_a818d504d4" value=""></div>
+			<div class="clear text-right"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-primary btn-sm"></div>
+		</form>
+		</div>
+		<!--End mc_embed_signup-->
+	</div>
+
+	<div class="sidebar-section sidebar-announcement sidebar-option">
+		<h4 class="text-center">Learn Node and Angular<br>with Our eBook</h4>
+		<a href="http://bit.ly/1FxJ3TI" target="_blank"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/mean-machine-page.jpeg" class="img-responsive"></a>
+	</div>
+
+	<div class="sidebar-section sidebar-announcement sidebar-option hidden">
+		<h4 class="text-center">A Vagrant LAMP Stack<br>That Just works</h4>
+		<a href="http://bit.ly/1PY0ujh" target="_blank"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/scotch-box-sidebar.png" class="img-responsive"></a>
+	</div>
+
+	<div class="sidebar-section sidebar-announcement sidebar-option hidden">
+		<a href="https://invoicebus.com/partner/scotch.io/?aff=8hlimbxx&utm_source=Scotch.io&utm_medium=banner&utm_term=invoice%20automation&utm_content=banner300x600&utm_campaign=Partners" target="_blank">
+		  <img src="./AngularJS Routing Using UI-Router _ Scotch_files/300x600.jpg" atl="Automate your invoicing with Invoicebus">
+		</a>
+	</div>
+
+	<div class="sidebar-section sidebar-announcement sidebar-option hidden">
+		<h4 class="text-center">Dead Simple<br>Off-Canvas Panels</h4>
+		<a href="http://bit.ly/1QJLLK5" target="_blank"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/scotch-panels-sidebar.png" class="img-responsive"></a>
+	</div>
+
+	<div class="sidebar-section sidebar-announcement sidebar-option hidden">
+		<h4 class="text-center">Scotch.io Stickers!</h4>
+		<a href="http://shop.scotch.io/" target="_blank"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/scotch-stickers.jpg" class="img-responsive"></a>
+	</div>
+
+	<div class="sidebar-section sidebar-announcement sidebar-option hidden">
+		<h4 class="text-center">See How Your Visitors<br>Are Using Your Website</h4>
+		<a href="http://synd.co/1PLW8JT" target="_blank"><img src="./AngularJS Routing Using UI-Router _ Scotch_files/Hotjar-Scotch___300x400.png" class="img-responsive"></a>
+	</div>
+
+</div></div>			</div>
+			
+		</div>
+	</div>
+
+</article>	
+
+</div><!-- .site-content -->
+
+</div><!-- .site-canvas -->
+</div><!-- .site-wrapper -->
+</main><!-- #site-main -->
+
+	<footer id="site-footer">
+		<div id="footer-content">
+		<div class="row">
+			<div class="col-md-2 footer-box">
+				<nav class="footer-social">
+					<ul class="list-unstyled list-inline">
+						<li><a href="https://www.facebook.com/scotchdevelopment" class="sbg-facebook">
+							<span class="icon ion-social-facebook"></span>
+						</a></li>
+						<li><a href="https://twitter.com/scotch_io" class="sbg-twitter">
+							<span class="icon ion-social-twitter"></span>
+						</a></li>
+						<li><a href="https://plus.google.com/+ScotchIo/posts" class="sbg-googleplus">
+							<span class="icon ion-social-googleplus"></span>
+						</a></li>
+						<li><a href="http://feeds.feedblitz.com/scotch_io" class="sbg-rss">
+							<span class="icon ion-social-rss"></span>
+						</a></li>
+					</ul>
+				</nav>
+				<nav class="footer-nav">
+					<ul>
+						<li><a href="https://scotch.io/license">License</a></li>
+						<li><a href="https://scotch.io/advertise">Advertise with Us</a></li>
+						<li><a href="https://scotch.io/about">About</a></li>
+						<li><a href="http://slack.scotch.io/">Join Us on Slack</a></li>
+						<li class="divider"></li>
+						<li><a href="http://shop.scotch.io/">Store</a></li>
+						<li><a href="https://scotch.io/write-for-us">Write for Us</a></li>
+						<li><a href="https://scotch.io/contact-us">Contact Us</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-3 footer-box">
+				<div class="footer-newsletter">
+					<h5>Join the Newsletter</h5>
+					<p>Web design/development tutorials and news from around the web.</p>
+					<!-- Begin MailChimp Signup Form -->
+					<div id="mc_embed_signup">
+					<form action="https://scotch.us3.list-manage.com/subscribe/post?u=1c412c864c03eadaf07ccd61e&id=a818d504d4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+						
+					<input type="hidden" name="LOCATION" id="LOCATION" value="footer">
+
+					<div class="mc-field-group form-group">
+						<input type="email" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Email Address">
+					</div>
+						<div id="mce-responses" class="clear">
+							<div class="response" id="mce-error-response" style="display:none"></div>
+							<div class="response" id="mce-success-response" style="display:none"></div>
+						</div>
+					    <div style="position: absolute; left: -5000px;"><input type="text" name="b_1c412c864c03eadaf07ccd61e_a818d504d4" value=""></div>
+						<div class="clear text-center"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-success btn-block"></div>
+					</form>
+					</div>
+					<!--End mc_embed_signup-->
+				</div>
+			</div>
+			<div class="col-md-3 footer-box text-center footer-digital">
+				<a href="http://bit.ly/18ib8jR" class="text-danger">
+					<img src="./AngularJS Routing Using UI-Router _ Scotch_files/digital.svg" width="250" height="22">
+					Hire Us
+				</a>
+			</div>
+			<div class="col-md-4 footer-box">
+				<div class="footer-announcement">
+					<a href="https://leanpub.com/mean-machine">
+						<img src="./AngularJS Routing Using UI-Router _ Scotch_files/mean-machine-page-e1425418361486-129x1671.jpeg" class="img-responsive">
+					</a>
+					<div class="footer-announcement-content">
+						<h5>Learn Node and Angular</h5>
+						<p>Scotch's new JavaScript eBook. Learn the full JavaScript stack.</p>
+						<a href="https://leanpub.com/mean-machine" class="btn btn-info">Get the Book</a>
+					</div>			
+				</div>
+			</div>
+		</div>
+		<div class="text-center footer-copyright">
+			<p class="text-muted">Web design and development tutorials for the masses.</p>
+			<p>© Scotch.io | Proudly hosted by <a href="https://www.digitalocean.com/?refcode=eaf67777e85b">Digital Ocean</a></p>
+		</div>
+		</div>
+	</footer>
+	
+<!--[if lt IE 9]>
+	<script async data-cfasync="true" src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script async data-cfasync="true" src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" id="yarppRelatedCss-css" href="./AngularJS Routing Using UI-Router _ Scotch_files/related.css" type="text/css" media="all">
+<script type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/scripts.min.js"></script>
+
+<script>
+	// DISQUS COMMENT COUNTS
+	var disqus_shortname = 'scotchwebdevelopment';
+    (function() {
+        var s = document.createElement('script'); 
+        s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+	
+		<script>
+		// BUY SELL ADS
+		(function() {
+			var bsa = document.createElement('script');
+				bsa.type = 'text/javascript';
+				bsa.async = true;
+				bsa.src = 'https://s3.buysellads.com/ac/bsa.js';
+			(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+		}());
+	</script>
+	
+	<script>
+		(function() {
+			var e = document.createElement("script");
+			e.type = "text/javascript";
+			e.async = true;
+			e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+			(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e);
+		}());
+	</script>
+
+	
+	
+
+<script type="text/javascript">var ajaxurl = 'https://scotch.io/wp-admin/admin-ajax.php';</script>
+<script type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/cleantalk_nocache.js"></script><script async="" type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/check_359604.js"></script><script async="" type="text/javascript" src="./AngularJS Routing Using UI-Router _ Scotch_files/check_359604.js"></script><iframe src="./AngularJS Routing Using UI-Router _ Scotch_files/container.html" style="visibility: hidden; display: none;"></iframe><iframe src="./AngularJS Routing Using UI-Router _ Scotch_files/container.html" style="visibility: hidden; display: none;"></iframe>
+
+
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using apc
+Object Caching 2658/3200 objects using apc
+
+ Served from: scotch.io @ 2015-05-22 00:39:36 by W3 Total Cache --><iframe id="google_osd_static_frame_6153777525760" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body></html>

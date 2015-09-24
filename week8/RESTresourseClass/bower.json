@@ -1,0 +1,26 @@
+{
+  "name": "restAPI",
+  "version": "0.0.0",
+  "homepage": "https://github.com/frisibeli/hack-bulgaria-frontend",
+  "authors": [
+    "frisibeli <frisibeli@gmail.com>"
+  ],
+  "main": "server.js",
+  "keywords": [
+    "rest",
+    "api"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "q": "1.x"
+  }
+}

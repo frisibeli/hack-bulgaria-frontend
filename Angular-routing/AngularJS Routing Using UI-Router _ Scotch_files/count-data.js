@@ -1,0 +1,5 @@
+var DISQUSWIDGETS;
+
+if (typeof DISQUSWIDGETS != 'undefined') {
+    DISQUSWIDGETS.displayCount({"text":{"and":"and","comments":{"zero":"0","multiple":"{num}","one":"1"}},"counts":[{"id":"https:\/\/scotch.io\/tutorials\/3-simple-tips-for-using-ui-router","comments":26},{"id":"https:\/\/scotch.io\/tutorials\/animating-angularjs-apps-ngview","comments":25},{"id":"https:\/\/scotch.io\/tutorials\/angular-routing-using-ui-router","comments":69},{"id":"https:\/\/scotch.io\/tutorials\/learn-to-use-the-new-router-in-expressjs-4","comments":50},{"id":"https:\/\/scotch.io\/tutorials\/single-page-apps-with-angularjs-routing-and-templating","comments":85},{"id":"https:\/\/scotch.io\/tutorials\/angularjs-multi-step-form-using-ui-router","comments":59},{"id":"https:\/\/scotch.io\/tutorials\/simple-and-easy-laravel-routing","comments":37}]});
+}

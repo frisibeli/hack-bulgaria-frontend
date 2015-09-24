@@ -1,0 +1,6 @@
+@philip_roberts
+event loop
+
+JavaScript - single-threaded non-blocking asynchronous language
+ - call stack, event loop, callback queue
+ - blocking - "slow code"   
